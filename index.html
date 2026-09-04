@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Aura | Salón de Belleza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fcfcfc;
+            --text: #1a1a1a;
+            --accent: #b38b59;
+            --accent-light: #e6d8c8;
+            --border: #eaeaea;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Cinzel', serif; font-weight: 600; }
+        
+        header { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(252,252,252,0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border); }
+        .logo { font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; color: var(--text); }
+        nav { display: flex; gap: 2rem; }
+        nav a { text-decoration: none; color: var(--text); font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+        nav a:hover { color: var(--accent); }
+        .btn { padding: 0.8rem 2rem; background: var(--text); color: var(--bg); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; border: 1px solid var(--text); transition: all 0.3s; cursor: pointer; }
+        .btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&q=80') center/cover; position: relative; }
+        .hero::after { content: ''; position: absolute; inset: 0; background: rgba(252,252,252,0.7); }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 2rem; }
+        .hero h1 { font-size: clamp(3rem, 5vw, 5rem); margin-bottom: 1rem; color: var(--text); }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; color: #444; }
+
+        section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 4rem; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .section-title p { color: #666; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .service-card { text-align: center; padding: 2rem; border: 1px solid var(--border); transition: transform 0.4s; background: #fff; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--accent-light); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+        .service-card img { width: 100%; height: 250px; object-fit: cover; margin-bottom: 1.5rem; filter: grayscale(20%); transition: filter 0.4s; }
+        .service-card:hover img { filter: grayscale(0); }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .service-card .price { color: var(--accent); font-size: 1.2rem; font-weight: 500; display: block; margin-bottom: 1rem; }
+
+        .booking { background: var(--accent-light); padding: 5rem 5%; text-align: center; }
+        .booking-form { max-width: 600px; margin: 0 auto; display: grid; gap: 1rem; background: #fff; padding: 3rem; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .booking-form input, .booking-form select { width: 100%; padding: 1rem; border: 1px solid var(--border); font-family: 'Jost', sans-serif; outline: none; }
+        .booking-form input:focus, .booking-form select:focus { border-color: var(--accent); }
+        
+        footer { padding: 4rem 5%; text-align: center; border-top: 1px solid var(--border); font-size: 0.9rem; color: #666; }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <a href="#" class="logo">STUDIO AURA</a>
+        <nav>
+            <a href="#servicios">Servicios</a>
+            <a href="#galeria">Galería</a>
+            <a href="#reserva">Reservas</a>
+        </nav>
+        <a href="#reserva" class="btn">Pedir Cita</a>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content reveal">
+            <h1>Tu estilo, nuestra firma</h1>
+            <p>Especialistas en colorimetría, cortes de autor y tratamientos capilares premium en el corazón de la ciudad.</p>
+            <a href="#reserva" class="btn">Reserva tu experiencia</a>
+        </div>
+    </div>
+
+    <section id="servicios">
+        <div class="section-title reveal">
+            <p>Nuestra Especialidad</p>
+            <h2>Servicios Destacados</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80" alt="Corte y Peinado">
+                <h3>Corte & Styling</h3>
+                <span class="price">Desde 45€</span>
+                <p>Asesoramiento de imagen, lavado spa, masaje craneal y corte de tendencia adaptado a tus facciones.</p>
+            </div>
+            <div class="service-card reveal">
+                <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&q=80" alt="Coloración">
+                <h3>Colorimetría Avanzada</h3>
+                <span class="price">Desde 85€</span>
+                <p>Balayage, Babylights y matices personalizados utilizando productos orgánicos que cuidan tu cabello.</p>
+            </div>
+            <div class="service-card reveal">
+                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?w=600&q=80" alt="Tratamiento">
+                <h3>Tratamiento Reestructurante</h3>
+                <span class="price">Desde 60€</span>
+                <p>Botox capilar y terapias de hidratación profunda para devolverle la luz y vitalidad a tu melena.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="booking" id="reserva">
+        <div class="section-title reveal">
+            <h2>Reserva tu momento</h2>
+            <p>Déjanos tus datos y confirmaremos tu cita en minutos.</p>
+        </div>
+        <form class="booking-form reveal" action="#" method="POST">
+            <input type="text" placeholder="Nombre completo" required>
+            <input type="tel" placeholder="Teléfono" required>
+            <select required>
+                <option value="">¿Qué servicio necesitas?</option>
+                <option value="corte">Corte & Styling</option>
+                <option value="color">Colorimetría</option>
+                <option value="tratamiento">Tratamiento Capilar</option>
+            </select>
+            <input type="date" required>
+            <button type="submit" class="btn" style="width:100%; margin-top:1rem;">Confirmar Cita</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>STUDIO AURA © 2026. Diseñado por InnovaRed.</p>
+        <p style="margin-top:0.5rem; font-size:0.8rem;">📍 C/ Principal 123, Barcelona | 📞 930 123 456</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
