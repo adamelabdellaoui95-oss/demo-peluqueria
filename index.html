@@ -3,133 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Aura | Salón de Belleza</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Studio Aura | Salón de Alta Peluquería</title>
+    <meta name="description" content="Salón de belleza y alta peluquería. Especialistas en colorimetría, cortes de autor y tratamientos premium.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #fcfcfc;
-            --text: #1a1a1a;
-            --accent: #b38b59;
-            --accent-light: #e6d8c8;
-            --border: #eaeaea;
-        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
-        h1, h2, h3 { font-family: 'Cinzel', serif; font-weight: 600; }
+        :root {
+            --bg: #FAFAF8;
+            --bg-alt: #F3F1EC;
+            --text: #1C1C1C;
+            --text-light: #5A5A5A;
+            --accent: #C8A97E;
+            --border: #E8E5DF;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 400; }
         
-        header { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(252,252,252,0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border); }
-        .logo { font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; color: var(--text); }
-        nav { display: flex; gap: 2rem; }
-        nav a { text-decoration: none; color: var(--text); font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
-        nav a:hover { color: var(--accent); }
-        .btn { padding: 0.8rem 2rem; background: var(--text); color: var(--bg); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; border: 1px solid var(--text); transition: all 0.3s; cursor: pointer; }
+        /* HEADER */
+        header { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: all 0.4s ease; border-bottom: 1px solid transparent; }
+        header.scrolled { background: rgba(250,250,248,0.95); backdrop-filter: blur(10px); padding: 1rem 5%; border-bottom: 1px solid var(--border); }
+        .logo { font-size: 1.6rem; letter-spacing: 3px; text-decoration: none; color: var(--text); font-family: 'Playfair Display', serif; text-transform: uppercase; }
+        nav { display: flex; gap: 2.5rem; }
+        nav a { text-decoration: none; color: var(--text); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; position: relative; transition: color 0.3s; }
+        nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s; }
+        nav a:hover::after { width: 100%; }
+        .btn { padding: 1rem 2.5rem; background: var(--text); color: var(--bg); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; transition: all 0.4s ease; border: 1px solid var(--text); display: inline-block; cursor: pointer; }
         .btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .btn-outline { background: transparent; color: var(--text); }
+        .btn-outline:hover { background: var(--text); color: var(--bg); }
 
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&q=80') center/cover; position: relative; }
-        .hero::after { content: ''; position: absolute; inset: 0; background: rgba(252,252,252,0.7); }
-        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 2rem; }
-        .hero h1 { font-size: clamp(3rem, 5vw, 5rem); margin-bottom: 1rem; color: var(--text); }
-        .hero p { font-size: 1.2rem; margin-bottom: 2rem; color: #444; }
+        /* HERO */
+        .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&q=80') center/cover; filter: contrast(1.1) brightness(0.9); z-index: -2; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(250,250,248,0.3), rgba(250,250,248,0.95)); z-index: -1; }
+        .hero-content { max-width: 900px; padding: 2rem; margin-top: 5rem; }
+        .eyebrow { display: block; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; font-weight: 500; }
+        .hero h1 { font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero h1 em { font-style: italic; color: var(--accent); }
+        .hero p { font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto 2.5rem; }
 
-        section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 4rem; }
-        .section-title h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .section-title p { color: #666; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem; }
+        /* SECTIONS */
+        section { padding: 8rem 5%; max-width: 1300px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 5rem; max-width: 700px; margin-inline: auto; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 1.5rem; line-height: 1.2; }
+        .section-header p { color: var(--text-light); }
 
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
-        .service-card { text-align: center; padding: 2rem; border: 1px solid var(--border); transition: transform 0.4s; background: #fff; }
-        .service-card:hover { transform: translateY(-10px); border-color: var(--accent-light); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
-        .service-card img { width: 100%; height: 250px; object-fit: cover; margin-bottom: 1.5rem; filter: grayscale(20%); transition: filter 0.4s; }
-        .service-card:hover img { filter: grayscale(0); }
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .service-card .price { color: var(--accent); font-size: 1.2rem; font-weight: 500; display: block; margin-bottom: 1rem; }
+        /* ABOUT / FILOSOFÍA */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-img { position: relative; }
+        .about-img img { width: 100%; height: 600px; object-fit: cover; border-radius: 4px; }
+        .about-img::after { content: ''; position: absolute; bottom: -20px; right: -20px; width: 60%; height: 60%; border: 2px solid var(--accent); z-index: -1; }
+        .about-text h3 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .about-text p { color: var(--text-light); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .stats { display: flex; gap: 3rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .stat h4 { font-size: 2.5rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .stat span { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light); }
 
-        .booking { background: var(--accent-light); padding: 5rem 5%; text-align: center; }
-        .booking-form { max-width: 600px; margin: 0 auto; display: grid; gap: 1rem; background: #fff; padding: 3rem; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
-        .booking-form input, .booking-form select { width: 100%; padding: 1rem; border: 1px solid var(--border); font-family: 'Jost', sans-serif; outline: none; }
-        .booking-form input:focus, .booking-form select:focus { border-color: var(--accent); }
+        /* SERVICIOS BENTO */
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .service-card { background: #fff; padding: 3rem 2rem; text-align: center; border: 1px solid var(--border); transition: all 0.4s ease; cursor: pointer; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--accent); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--accent); font-family: 'Playfair Display', serif; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .service-card p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 2rem; }
+        .service-price { display: block; font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text); border-top: 1px solid var(--border); padding-top: 1.5rem; }
+
+        /* GALERÍA */
+        .bg-alt { background-color: var(--bg-alt); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .gallery-item { position: relative; overflow: hidden; aspect-ratio: 1; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: grayscale(20%); }
+        .gallery-item:hover img { transform: scale(1.05); filter: grayscale(0%); }
+        .gallery-item.large { grid-column: span 2; grid-row: span 2; }
+
+        /* TESTIMONIOS */
+        .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .testi-card { padding: 3rem 2rem; border: 1px solid var(--border); background: #fff; text-align: center; }
+        .stars { color: var(--accent); letter-spacing: 2px; margin-bottom: 1.5rem; font-size: 1.2rem; }
+        .testi-card p { font-style: italic; color: var(--text-light); margin-bottom: 2rem; font-size: 1.05rem; }
+        .testi-card h4 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* RESERVAS */
+        .booking-section { max-width: 1000px; margin: 0 auto; background: #fff; padding: 4rem; border: 1px solid var(--border); box-shadow: 0 30px 60px rgba(0,0,0,0.03); position: relative; top: -50px; }
+        .booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group.full { grid-column: 1 / -1; }
+        label { font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-light); }
+        input, select { padding: 1.2rem; border: 1px solid var(--border); background: var(--bg); font-family: 'Jost', sans-serif; font-size: 1rem; outline: none; transition: border-color 0.3s; }
+        input:focus, select:focus { border-color: var(--accent); }
         
-        footer { padding: 4rem 5%; text-align: center; border-top: 1px solid var(--border); font-size: 0.9rem; color: #666; }
-        
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        /* FOOTER */
+        footer { padding: 6rem 5% 2rem; border-top: 1px solid var(--border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; max-width: 1300px; margin: 0 auto 4rem; }
+        .footer-col h5 { font-size: 1.2rem; margin-bottom: 1.5rem; }
+        .footer-col p, .footer-col a { color: var(--text-light); font-size: 0.95rem; margin-bottom: 0.8rem; display: block; text-decoration: none; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-light); font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            nav { display: none; }
+            .about-grid, .services-grid, .testimonials, .booking-form, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 3rem; }
+            .booking-section { padding: 2rem; top: 0; margin-top: 4rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; }
+        }
     </style>
 </head>
 <body>
 
     <header id="header">
-        <a href="#" class="logo">STUDIO AURA</a>
+        <a href="#" class="logo">Studio Aura</a>
         <nav>
+            <a href="#filosofia">Filosofía</a>
             <a href="#servicios">Servicios</a>
-            <a href="#galeria">Galería</a>
-            <a href="#reserva">Reservas</a>
+            <a href="#galeria">El Espacio</a>
+            <a href="#reseñas">Reseñas</a>
         </nav>
         <a href="#reserva" class="btn">Pedir Cita</a>
     </header>
 
-    <div class="hero">
+    <section class="hero">
+        <div class="hero-bg"></div>
         <div class="hero-content reveal">
-            <h1>Tu estilo, nuestra firma</h1>
-            <p>Especialistas en colorimetría, cortes de autor y tratamientos capilares premium en el corazón de la ciudad.</p>
-            <a href="#reserva" class="btn">Reserva tu experiencia</a>
-        </div>
-    </div>
-
-    <section id="servicios">
-        <div class="section-title reveal">
-            <p>Nuestra Especialidad</p>
-            <h2>Servicios Destacados</h2>
-        </div>
-        <div class="services-grid">
-            <div class="service-card reveal">
-                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80" alt="Corte y Peinado">
-                <h3>Corte & Styling</h3>
-                <span class="price">Desde 45€</span>
-                <p>Asesoramiento de imagen, lavado spa, masaje craneal y corte de tendencia adaptado a tus facciones.</p>
-            </div>
-            <div class="service-card reveal">
-                <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&q=80" alt="Coloración">
-                <h3>Colorimetría Avanzada</h3>
-                <span class="price">Desde 85€</span>
-                <p>Balayage, Babylights y matices personalizados utilizando productos orgánicos que cuidan tu cabello.</p>
-            </div>
-            <div class="service-card reveal">
-                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?w=600&q=80" alt="Tratamiento">
-                <h3>Tratamiento Reestructurante</h3>
-                <span class="price">Desde 60€</span>
-                <p>Botox capilar y terapias de hidratación profunda para devolverle la luz y vitalidad a tu melena.</p>
+            <span class="eyebrow">Alta Peluquería & Estética</span>
+            <h1>Tu cabello, <br><em>nuestra obra de arte</em></h1>
+            <p>Un espacio dedicado al cuidado integral de tu imagen, donde las técnicas más avanzadas se encuentran con los productos más exclusivos.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#reserva" class="btn">Reserva tu experiencia</a>
+                <a href="#servicios" class="btn btn-outline">Ver Carta de Servicios</a>
             </div>
         </div>
     </section>
 
-    <div class="booking" id="reserva">
-        <div class="section-title reveal">
-            <h2>Reserva tu momento</h2>
-            <p>Déjanos tus datos y confirmaremos tu cita en minutos.</p>
+    <section id="filosofia">
+        <div class="about-grid">
+            <div class="about-img reveal">
+                <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=800&q=80" alt="Estilista trabajando">
+            </div>
+            <div class="about-text reveal">
+                <span class="eyebrow">Nuestra Esencia</span>
+                <h3>Más que un corte, una revelación de tu estilo personal.</h3>
+                <p>En Studio Aura no seguimos modas efímeras. Estudiamos tus facciones, tu tono de piel y tu estilo de vida para diseñar un look que sea auténticamente tuyo.</p>
+                <p>Trabajamos exclusivamente con productos orgánicos y marcas premium libres de crueldad animal, porque creemos que el verdadero lujo debe ser sostenible y respetuoso con la salud de tu cabello.</p>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <h4>12</h4>
+                        <span>Años de Experiencia</span>
+                    </div>
+                    <div class="stat">
+                        <h4>100%</h4>
+                        <span>Productos Orgánicos</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <form class="booking-form reveal" action="#" method="POST">
-            <input type="text" placeholder="Nombre completo" required>
-            <input type="tel" placeholder="Teléfono" required>
-            <select required>
-                <option value="">¿Qué servicio necesitas?</option>
-                <option value="corte">Corte & Styling</option>
-                <option value="color">Colorimetría</option>
-                <option value="tratamiento">Tratamiento Capilar</option>
-            </select>
-            <input type="date" required>
-            <button type="submit" class="btn" style="width:100%; margin-top:1rem;">Confirmar Cita</button>
-        </form>
-    </div>
+    </section>
+
+    <section id="servicios" class="bg-alt">
+        <div class="section-header reveal">
+            <span class="eyebrow">Nuestra Carta</span>
+            <h2>Servicios Premium</h2>
+            <p>Tratamientos diseñados para elevar tu imagen con resultados duraderos.</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">I</div>
+                <h3>Corte de Autor</h3>
+                <p>Estudio visagista, lavado relajante con masaje capilar shiatsu y corte adaptado a las necesidades de tu cabello.</p>
+                <span class="service-price">Desde 45€</span>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">II</div>
+                <h3>Colorimetría & Diseño</h3>
+                <p>Técnicas avanzadas de Balayage, Babylights y Melting. Diseñamos puntos de luz para realzar tu rostro.</p>
+                <span class="service-price">Desde 95€</span>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">III</div>
+                <h3>Terapias de Rescate</h3>
+                <p>Botox capilar, ácido hialurónico y tratamientos de proteínas para devolver la vida al cabello dañado.</p>
+                <span class="service-price">Desde 65€</span>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">IV</div>
+                <h3>Alisado Orgánico</h3>
+                <p>Elimina el encrespamiento y alisa de forma natural sin formol, aportando un brillo espejo espectacular.</p>
+                <span class="service-price">Desde 150€</span>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">V</div>
+                <h3>Estilismo Eventos</h3>
+                <p>Recogidos de vanguardia, ondas al agua y maquillaje profesional para novias y ocasiones especiales.</p>
+                <span class="service-price">Desde 80€</span>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">VI</div>
+                <h3>Estética Facial</h3>
+                <p>Diseño de cejas con hilo, lifting de pestañas y tratamientos faciales iluminadores.</p>
+                <span class="service-price">Desde 35€</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="section-header reveal">
+            <span class="eyebrow">Portfolio</span>
+            <h2>Arte en movimiento</h2>
+        </div>
+        <div class="gallery-grid reveal">
+            <div class="gallery-item large"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?w=800&q=80" alt="Peinado"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&q=80" alt="Corte"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=400&q=80" alt="Color"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=400&q=80" alt="Detalle"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=400&q=80" alt="Salón"></div>
+        </div>
+    </section>
+
+    <section id="reseñas" class="bg-alt">
+        <div class="section-header reveal">
+            <span class="eyebrow">La Experiencia</span>
+            <h2>Lo que dicen de nosotros</h2>
+        </div>
+        <div class="testimonials">
+            <div class="testi-card reveal">
+                <div class="stars">★★★★★</div>
+                <p>"La primera vez que salgo de una peluquería sintiendo que realmente me han escuchado. El color me ha quedado espectacular y el trato es de lujo."</p>
+                <h4>Elena Martín</h4>
+            </div>
+            <div class="testi-card reveal">
+                <div class="stars">★★★★★</div>
+                <p>"El tratamiento de rescate salvó mi pelo después del verano. El espacio transmite muchísima paz, es mi momento de relax del mes."</p>
+                <h4>Sofía Valdés</h4>
+            </div>
+            <div class="testi-card reveal">
+                <div class="stars">★★★★★</div>
+                <p>"Increíbles profesionales. Me peinaron y maquillaron para mi boda y el resultado aguantó intacto hasta el final. No las cambio por nadie."</p>
+                <h4>Carmen R.</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="reserva" style="padding-top: 0; padding-bottom: 0;">
+        <div class="booking-section reveal">
+            <div class="section-header" style="margin-bottom: 3rem;">
+                <span class="eyebrow">Tu Momento</span>
+                <h2>Solicita tu cita</h2>
+                <p>Déjanos tus datos y nos pondremos en contacto contigo en breve para confirmar disponibilidad.</p>
+            </div>
+            
+            <form class="booking-form" action="#" method="POST">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono de Contacto</label>
+                    <input type="tel" required>
+                </div>
+                <div class="form-group full">
+                    <label>Servicio de interés</label>
+                    <select required>
+                        <option value="">Selecciona un tratamiento...</option>
+                        <option>Corte y Asesoramiento</option>
+                        <option>Color y Mechas</option>
+                        <option>Tratamientos de Hidratación</option>
+                        <option>Alisado Orgánico</option>
+                        <option>Estética / Otros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Fecha preferida</label>
+                    <input type="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Horario</label>
+                    <select required>
+                        <option value="">Selecciona franja...</option>
+                        <option>Mañana (10:00 - 14:00)</option>
+                        <option>Tarde (16:00 - 20:00)</option>
+                    </select>
+                </div>
+                <div class="form-group full" style="margin-top: 1rem;">
+                    <button type="submit" class="btn" style="width: 100%; font-size: 1rem; padding: 1.2rem;">Confirmar Solicitud de Cita</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
     <footer>
-        <p>STUDIO AURA © 2026. Diseñado por InnovaRed.</p>
-        <p style="margin-top:0.5rem; font-size:0.8rem;">📍 C/ Principal 123, Barcelona | 📞 930 123 456</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="margin-bottom: 1rem; display: block;">Studio Aura</a>
+                <p>Elevamos el arte de la peluquería para ofrecerte una experiencia de belleza transformadora y un momento de auténtico bienestar.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Contacto</h5>
+                <p>📍 Calle Mayor 45, Local 2<br>08001, Barcelona</p>
+                <p>📞 930 123 456</p>
+                <p>✉️ hola@studioaura.es</p>
+            </div>
+            <div class="footer-col">
+                <h5>Horario</h5>
+                <p>Lunes a Viernes<br>10:00 - 20:00</p>
+                <p>Sábados<br>09:00 - 15:00</p>
+                <p>Domingos cerrado</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Studio Aura. Todos los derechos reservados.</span>
+            <span>Diseño exclusivo por <strong style="color:var(--text);">InnovaRed</strong></span>
+        </div>
     </footer>
 
     <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
